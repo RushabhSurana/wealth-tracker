@@ -1,0 +1,178 @@
+// Prisma schema for Personal Finance / Net Worth Tracker
+// Using SQLite for zero-setup local development
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Cash accounts (bank/cash/wallet)
+model Account {
+  id        String    @id @default(cuid())
+  name      String
+  type      String    // cash, bank, wallet, savings
+  currency  String    @default("INR")
+  balance   Float     @default(0)
+  notes     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  holdings  Holding[]
+
+  @@index([type])
+}
+
+// Asset definitions (equity/mf/crypto/gold/custom)
+model Asset {
+  id        String    @id @default(cuid())
+  name      String
+  type      String    // equity, mf, crypto, gold, realestate, vehicle, custom
+  symbol    String?   // AAPL, BTC, etc.
+  currency  String    @default("INR")
+  notes     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  holdings  Holding[]
+  prices    Price[]
+
+  @@index([type])
+  @@index([symbol])
+}
+
+// Holdings - user's actual positions
+model Holding {
+  id        String   @id @default(cuid())
+  assetId   String
+  asset     Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  accountId String?
+  account   Account? @relation(fields: [accountId], references: [id], onDelete: SetNull)
+  units     Float
+  avgCost   Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([assetId])
+  @@index([accountId])
+}
+
+// Price history for assets
+model Price {
+  id      String   @id @default(cuid())
+  assetId String
+  asset   Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  asOf    DateTime @default(now())
+  price   Float
+
+  @@index([assetId, asOf])
+  @@index([asOf])
+}
+
+// Debt tracking (loans, credit cards)
+model Debt {
+  id           String    @id @default(cuid())
+  name         String
+  type         String    // home, auto, personal, education, cc (credit card)
+  principal    Float
+  currentBalance Float?  // For tracking payoff progress
+  apr          Float     // Annual Percentage Rate as decimal (e.g., 0.12 for 12%)
+  emi          Float     // Monthly payment amount
+  startDate    DateTime
+  tenureMonths Int
+  nextDueDate  DateTime?
+  notes        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([type])
+  @@index([nextDueDate])
+}
+
+// Income streams
+model IncomeStream {
+  id            String    @id @default(cuid())
+  name          String
+  type          String    // salary, freelance, rental, dividend, other
+  amountMonthly Float
+  startDate     DateTime
+  endDate       DateTime?
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([type])
+}
+
+// Expense items
+model ExpenseItem {
+  id            String    @id @default(cuid())
+  name          String
+  category      String    // housing, transport, food, utilities, entertainment, health, education, other
+  amountMonthly Float
+  type          String    // fixed, variable
+  startDate     DateTime
+  endDate       DateTime?
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([category])
+  @@index([type])
+}
+
+// Net worth snapshots for historical tracking
+model NetWorthSnapshot {
+  id               String   @id @default(cuid())
+  asOfMonth        DateTime // First day of the month
+  totalAssets      Float
+  totalLiabilities Float
+  netWorth         Float
+  liquidAssets     Float
+  liquidNetWorth   Float
+  createdAt        DateTime @default(now())
+
+  @@unique([asOfMonth])
+  @@index([asOfMonth])
+}
+
+// Savings Goals
+model SavingsGoal {
+  id            String    @id @default(cuid())
+  name          String
+  targetAmount  Float
+  currentAmount Float     @default(0)
+  deadline      DateTime?
+  category      String    // emergency, retirement, house, car, vacation, education, other
+  priority      Int       @default(1) // 1 = highest
+  notes         String?
+  isCompleted   Boolean   @default(false)
+  completedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([category])
+  @@index([isCompleted])
+}
+
+// Budget limits per expense category
+model BudgetCategory {
+  id            String   @id @default(cuid())
+  category      String   @unique // housing, transport, food, etc.
+  monthlyLimit  Float
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Settings (single row)
+model Settings {
+  id                        String   @id @default("settings")
+  emergencyFundMonthsTarget Int      @default(6)
+  emiToIncomeMaxPercent     Int      @default(35)
+  ccUtilizationMaxPercent   Int      @default(30)
+  allocationTargetsJson     String   @default("{\"equity\":40,\"mf\":20,\"crypto\":10,\"gold\":10,\"realestate\":15,\"other\":5}")
+  theme                     String   @default("light") // light, dark, system
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+}

@@ -1,0 +1,312 @@
+{
+  "version": "1.0.0",
+  "accounts": [
+    {
+      "name": "Primary Savings Account",
+      "type": "bank",
+      "currency": "INR",
+      "balance": 0,
+      "notes": "Main salary account"
+    },
+    {
+      "name": "Secondary Savings Account",
+      "type": "bank",
+      "currency": "INR",
+      "balance": 0,
+      "notes": "Emergency fund account"
+    },
+    {
+      "name": "Fixed Deposit",
+      "type": "savings",
+      "currency": "INR",
+      "balance": 0,
+      "notes": "FD at X% interest"
+    },
+    {
+      "name": "Cash Wallet",
+      "type": "wallet",
+      "currency": "INR",
+      "balance": 0,
+      "notes": "Petty cash"
+    }
+  ],
+  "assets": [
+    {
+      "name": "Stock 1",
+      "type": "equity",
+      "symbol": "SYMBOL1",
+      "currency": "INR",
+      "notes": "Indian equity"
+    },
+    {
+      "name": "Stock 2",
+      "type": "equity",
+      "symbol": "SYMBOL2",
+      "currency": "INR"
+    },
+    {
+      "name": "Mutual Fund 1",
+      "type": "mf",
+      "symbol": "MF1",
+      "currency": "INR",
+      "notes": "Large cap fund"
+    },
+    {
+      "name": "Mutual Fund 2",
+      "type": "mf",
+      "symbol": "MF2",
+      "currency": "INR",
+      "notes": "Index fund"
+    },
+    {
+      "name": "Bitcoin",
+      "type": "crypto",
+      "symbol": "BTC",
+      "currency": "INR"
+    },
+    {
+      "name": "Physical Gold",
+      "type": "gold",
+      "symbol": "GOLD",
+      "currency": "INR",
+      "notes": "Gold coins/jewelry in grams"
+    },
+    {
+      "name": "Property - Location",
+      "type": "realestate",
+      "currency": "INR",
+      "notes": "2BHK apartment"
+    },
+    {
+      "name": "Car Model",
+      "type": "vehicle",
+      "currency": "INR",
+      "notes": "Year and model"
+    }
+  ],
+  "holdings": [
+    {
+      "assetSymbol": "SYMBOL1",
+      "units": 0,
+      "avgCost": 0
+    },
+    {
+      "assetSymbol": "SYMBOL2",
+      "units": 0,
+      "avgCost": 0
+    },
+    {
+      "assetSymbol": "MF1",
+      "units": 0,
+      "avgCost": 0
+    },
+    {
+      "assetSymbol": "MF2",
+      "units": 0,
+      "avgCost": 0
+    },
+    {
+      "assetSymbol": "BTC",
+      "units": 0,
+      "avgCost": 0
+    },
+    {
+      "assetSymbol": "GOLD",
+      "units": 0,
+      "avgCost": 0
+    }
+  ],
+  "debts": [
+    {
+      "name": "Home Loan",
+      "type": "home",
+      "principal": 0,
+      "currentBalance": 0,
+      "apr": 0.085,
+      "emi": 0,
+      "startDate": "2023-01-01",
+      "tenureMonths": 240,
+      "nextDueDate": "2025-02-05",
+      "notes": "Bank name"
+    },
+    {
+      "name": "Car Loan",
+      "type": "auto",
+      "principal": 0,
+      "currentBalance": 0,
+      "apr": 0.095,
+      "emi": 0,
+      "startDate": "2024-01-01",
+      "tenureMonths": 60,
+      "nextDueDate": "2025-02-05"
+    },
+    {
+      "name": "Credit Card",
+      "type": "cc",
+      "principal": 0,
+      "currentBalance": 0,
+      "apr": 0.42,
+      "emi": 0,
+      "startDate": "2025-01-01",
+      "tenureMonths": 1,
+      "notes": "Outstanding balance"
+    },
+    {
+      "name": "Personal Loan",
+      "type": "personal",
+      "principal": 0,
+      "currentBalance": 0,
+      "apr": 0.14,
+      "emi": 0,
+      "startDate": "2024-06-01",
+      "tenureMonths": 36
+    },
+    {
+      "name": "Education Loan",
+      "type": "education",
+      "principal": 0,
+      "currentBalance": 0,
+      "apr": 0.09,
+      "emi": 0,
+      "startDate": "2022-01-01",
+      "tenureMonths": 120
+    }
+  ],
+  "incomeStreams": [
+    {
+      "name": "Primary Salary",
+      "type": "salary",
+      "amountMonthly": 0,
+      "startDate": "2022-01-01",
+      "notes": "After tax take-home"
+    },
+    {
+      "name": "Freelance/Side Income",
+      "type": "freelance",
+      "amountMonthly": 0,
+      "startDate": "2023-01-01",
+      "notes": "Average monthly"
+    },
+    {
+      "name": "Rental Income",
+      "type": "rental",
+      "amountMonthly": 0,
+      "startDate": "2023-01-01"
+    },
+    {
+      "name": "Dividend Income",
+      "type": "dividend",
+      "amountMonthly": 0,
+      "startDate": "2023-01-01",
+      "notes": "Average monthly from stocks/MFs"
+    }
+  ],
+  "expenseItems": [
+    {
+      "name": "Rent/Housing",
+      "category": "housing",
+      "amountMonthly": 0,
+      "type": "fixed",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Society Maintenance",
+      "category": "housing",
+      "amountMonthly": 0,
+      "type": "fixed",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Electricity",
+      "category": "utilities",
+      "amountMonthly": 0,
+      "type": "fixed",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Internet + Mobile",
+      "category": "utilities",
+      "amountMonthly": 0,
+      "type": "fixed",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Groceries",
+      "category": "food",
+      "amountMonthly": 0,
+      "type": "variable",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Dining Out",
+      "category": "food",
+      "amountMonthly": 0,
+      "type": "variable",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Fuel/Transport",
+      "category": "transport",
+      "amountMonthly": 0,
+      "type": "variable",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Subscriptions (Netflix, etc)",
+      "category": "entertainment",
+      "amountMonthly": 0,
+      "type": "fixed",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Entertainment/Outings",
+      "category": "entertainment",
+      "amountMonthly": 0,
+      "type": "variable",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Health Insurance",
+      "category": "health",
+      "amountMonthly": 0,
+      "type": "fixed",
+      "startDate": "2022-01-01",
+      "notes": "Premium/12"
+    },
+    {
+      "name": "Medical/Pharmacy",
+      "category": "health",
+      "amountMonthly": 0,
+      "type": "variable",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Shopping/Personal",
+      "category": "other",
+      "amountMonthly": 0,
+      "type": "variable",
+      "startDate": "2022-01-01"
+    },
+    {
+      "name": "Term/Life Insurance",
+      "category": "other",
+      "amountMonthly": 0,
+      "type": "fixed",
+      "startDate": "2022-01-01",
+      "notes": "Premium/12"
+    }
+  ],
+  "settings": {
+    "emergencyFundMonthsTarget": 6,
+    "emiToIncomeMaxPercent": 35,
+    "ccUtilizationMaxPercent": 30,
+    "allocationTargets": {
+      "equity": 40,
+      "mf": 25,
+      "crypto": 10,
+      "gold": 10,
+      "realestate": 10,
+      "other": 5
+    }
+  }
+}
